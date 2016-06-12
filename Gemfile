@@ -6,6 +6,9 @@ gem "pg"
 gem "rack-cors"
 gem "jbuilder"
 
+gem "devise_token_auth"
+gem "omniauth"
+
 # Workers
 gem "resque"
 gem "aws-sdk"

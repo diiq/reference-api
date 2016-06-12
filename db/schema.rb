@@ -11,11 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612164309) do
+ActiveRecord::Schema.define(version: 20160612174521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "assignments", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.uuid     "object_id"
+    t.string   "object_type"
+    t.uuid     "user_id"
+    t.uuid     "role_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "permissions", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.uuid     "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "references", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roles", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false

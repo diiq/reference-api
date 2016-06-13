@@ -8,4 +8,8 @@ class Reference < ActiveRecord::Base
   #
   # updated_at: date
   #
+  def presigned_put
+    obj = S3_BUCKET.object(id)
+    obj.presigned_url(:put)
+  end
 end

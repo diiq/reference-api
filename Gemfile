@@ -15,6 +15,10 @@ gem "resque"
 gem "aws-sdk"
 gem "paperclip", git: "https://github.com/thoughtbot/paperclip"
 
+group :test, :development do
+  gem 'dotenv-rails'
+end
+
 group :test do
   gem "rspec-rails"
   gem "spring-commands-rspec"

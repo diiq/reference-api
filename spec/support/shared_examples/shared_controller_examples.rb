@@ -1,4 +1,4 @@
-shared_examples_for "an unauthenticated request" do
+shared_examples_for "an authenticated endpoint" do
   it "returns 401" do
     do_request
     expect(response.status).to eq(401)
@@ -18,7 +18,7 @@ shared_examples_for "a permissions-protected endpoint" do
       stub_sign_out
     end
 
-    it_behaves_like "an unauthenticated request"
+    it_behaves_like "an authenticated endpoint"
   end
 
   context "when requested by a user without permission," do

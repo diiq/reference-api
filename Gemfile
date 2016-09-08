@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ ruby "2.3.1"
 
 # Rails
 gem "rails"
@@ -15,6 +16,10 @@ gem "resque"
 gem "aws-sdk"
 gem "paperclip", git: "https://github.com/thoughtbot/paperclip"
 
+group :production do
+  gem 'rails_12factor'
+end 
+
 group :test, :development do
   gem 'dotenv-rails'
 end
@@ -30,5 +35,8 @@ group :development do
   gem "pry"
   gem "spring"
   gem 'guard-rspec'
-  gem 'rb-fsevent' if `uname` =~ /Darwin/
+end
+
+group :darwin do 
+  gem 'rb-fsevent'
 end

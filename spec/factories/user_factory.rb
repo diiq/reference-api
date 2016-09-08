@@ -12,7 +12,7 @@ FactoryGirl.define do
       end
 
       after :create do |user, evaluator|
-        role = FactoryGirl.create :role 
+        role = FactoryGirl.create :role
         permission = FactoryGirl.create :permission, name: evaluator.to, role: role
         user.assign_as! role, to: evaluator.this
       end

@@ -29,4 +29,6 @@ end
 group :development do
   gem "pry"
   gem "spring"
+  gem 'guard-rspec'
+  gem 'rb-fsevent' if `uname` =~ /Darwin/
 end

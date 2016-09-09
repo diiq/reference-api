@@ -1,4 +1,5 @@
 class Role < ActiveRecord::Base
+  extend RolesList
   # Columns:
   #
   # name: string

@@ -1,3 +1,5 @@
+class MissingRoleForAssignment < Exception; end
+
 class User < ActiveRecord::Base
   # Columns:
   # email: string
@@ -12,7 +14,7 @@ class User < ActiveRecord::Base
 
   def assign_as!(role, to:)
     role = Role.find_by(name: role.to_s) if !(role.is_a? Role)
-    raise if !role
+    raise MissingRoleForAssignment.new(role.to_s) if !role
     Assignment.create!(role: role, user: self, object: to)
   end
 

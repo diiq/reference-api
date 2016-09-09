@@ -27,5 +27,17 @@ describe User do
         expect(user.may? :view, reference).to be(false)
       end
     end
+
+    describe "creator_tag" do
+      pending
+    end
+
+    describe "references_I_may_view" do
+      pending
+    end
+
+    describe "things_I_may" do
+      pending
+    end
   end
 end

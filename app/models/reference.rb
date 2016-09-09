@@ -42,6 +42,8 @@ class Reference < ActiveRecord::Base
     self.image = open(url)
   end
 
+  private
+
   def upload_object
     S3_BUCKET.object("uploads/#{id}")
   end

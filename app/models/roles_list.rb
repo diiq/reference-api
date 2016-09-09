@@ -4,6 +4,7 @@ module RolesList
       role.ensure_permission_exists(:always_own)
       role.ensure_permission_exists(:view)
       role.ensure_permission_exists(:edit_references)
+      role.ensure_permission_exists(:edit)
     end
   end
 

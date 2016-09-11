@@ -54,13 +54,15 @@ class ReferencesController < ApplicationController
   def reference_params
     @reference_params ||= params.require(:reference).permit(
       :notes,
-      :tag_ids
+      tag_ids: []
     )
   end
 
   def ensure_current_user_owns
+    print reference_params[:tag_ids]
     reference_params[:tag_ids] ||= []
     reference_params[:tag_ids] << current_user.creator_tag.id
+    print reference_params[:tag_ids]
   end
 
   def ensure_has_tags_I_may(permission)

@@ -69,6 +69,6 @@ class User < ActiveRecord::Base
   def references_I_may_view
     tags = ids_of_tags_I_may(:view)
     Reference.joins(:reference_tags)
-      .where(reference_tags: {tag_id: tags})
+      .where(reference_tags: {tag_id: tags}).uniq
   end
 end

@@ -6,6 +6,7 @@ gem "rails"
 gem "pg"
 gem "rack-cors"
 gem "jbuilder"
+gem "yajl-ruby"
 
 gem "devise", "~> 4.1.1"
 gem "devise_token_auth", github: "lynndylanhurley/devise_token_auth"

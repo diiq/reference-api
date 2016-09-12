@@ -244,6 +244,7 @@ GEM
       rack (>= 1.0.0)
     warden (1.2.6)
       rack (>= 1.0)
+    yajl-ruby (1.2.1)
 
 PLATFORMS
   ruby
@@ -269,6 +270,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   timecop
+  yajl-ruby
 
 RUBY VERSION
    ruby 2.3.1p112

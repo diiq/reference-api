@@ -26,7 +26,7 @@ describe ReferencesController do
       do_request
       expect(response.status).to be(200)
       expect(body.keys).to contain_exactly(
-        "id", "medium", "notes", "original", "square", "thumb"
+        "id", "medium", "notes", "original", "square", "thumb", "tagIDs"
       )
     end
   end
@@ -46,7 +46,8 @@ describe ReferencesController do
       expect(response.status).to be(200)
       expect(body.keys).to contain_exactly(
         "id",
-        "presigned_put"
+        "presigned_put",
+        "tagIDs"
       )
     end
 
@@ -75,7 +76,7 @@ describe ReferencesController do
 
       returned_properties = body['references'][0].keys
       expect(returned_properties).to contain_exactly(
-        "id", "medium", "notes", "original", "square", "thumb"
+        "id", "medium", "notes", "original", "square", "thumb", "tagIDs"
       )
     end
   end
@@ -137,6 +138,54 @@ describe ReferencesController do
       reference.save!
       expect { do_request }.to_not change { Reference.count }
       expect(reference.reload.tags.count).to be(1)
+    end
+  end
+
+  describe "#add_reference" do
+    let!(:new_tag) do
+      tag = FactoryGirl.create :tag 
+      user.assign_as!(:permanent_owner, to: tag)
+      tag
+    end
+
+    subject(:do_request) do
+      post :add_tag,
+           tag_id: tag.id,
+           reference_id: reference.id,
+           format: 'json'
+    end
+
+    it_behaves_like "an authenticated endpoint"
+
+    it "Adds the reference to the tag (or vice versa)" do
+      stub_sign_in user
+      do_request
+      expect(reference.reload.tags).to include(tag)
+    end
+  end
+
+  describe "#remove_reference" do
+    let!(:new_tag) do
+      tag = FactoryGirl.create :tag 
+      tag.references = [reference]
+      tag.save!
+      user.assign_as!(:permanent_owner, to: tag)
+      tag
+    end
+
+    subject(:do_request) do
+      post :remove_tag,
+           tag_id: tag.id,
+           reference_id: reference.id,
+           format: 'json'
+    end
+
+    it_behaves_like "an authenticated endpoint"
+
+    it "Adds the reference to the tag (or vice versa)" do
+      stub_sign_in user
+      do_request
+      expect(reference.reload.tags).to_not include(tag)
     end
   end
 end

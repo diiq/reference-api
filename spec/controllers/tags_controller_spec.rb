@@ -97,46 +97,4 @@ describe TagsController do
       )
     end
   end
-
-  # describe "#set_from_url default" do
-  #   subject(:do_request) do
-  #     post :set_from_url,
-  #          format: 'json',
-  #          reference_id: reference.id
-  #   end
-
-  #   it_behaves_like "an authenticated endpoint"
-
-  #   it "sets the image from the default presigned put url" do
-  #     stub_sign_in user
-  #     expect(Reference).to receive(:find).and_return(reference)
-  #     expect(reference).to receive(:set_from_presigned_put)
-  #     do_request
-  #   end
-  # end
-
-  # describe "#destroy" do
-  #   subject(:do_request) do
-  #     delete :destroy,
-  #            format: 'json',
-  #            id: reference.id
-  #   end
-  #   let(:second_tag) { FactoryGirl.create :tag }
-
-  #   it_behaves_like "an authenticated endpoint"
-
-  #   it "deletes the reference if I own all tags" do
-  #     stub_sign_in user
-  #     reference
-  #     expect { do_request }.to change { Reference.count }.by(-1)
-  #   end
-
-  #   it "removes tags I own but leaves the reference" do
-  #     stub_sign_in user
-  #     reference.tags << second_tag
-  #     reference.save!
-  #     expect { do_request }.to_not change { Reference.count }
-  #     expect(reference.reload.tags.count).to be(1)
-  #   end
-  # end
 end

@@ -45,6 +45,33 @@ class ReferencesController < ApplicationController
     render json: {}, status: :no_content
   end
 
+  def add_tag
+    tag = Tag.find(params[:tag_id])
+    requires_user_may :edit, tag
+
+    # You can't assign yourself as the creator of a tag, either.
+    raise AuthorizationError if tag == current_user.creator_tag
+
+    ReferenceTag.where(
+      tag_id: tag.id,
+      reference_id: params[:reference_id]
+    ).first_or_create!
+
+    reference
+  end
+
+  def remove_tag
+    tag = Tag.find(params[:tag_id])
+    requires_user_may :edit, tag
+
+    ReferenceTag.where(
+      tag_id: tag.id,
+      reference_id: params[:reference_id]
+    ).destroy_all
+
+    reference
+  end
+
   private
 
   def reference
@@ -59,10 +86,8 @@ class ReferencesController < ApplicationController
   end
 
   def ensure_current_user_owns
-    print reference_params[:tag_ids]
     reference_params[:tag_ids] ||= []
     reference_params[:tag_ids] << current_user.creator_tag.id
-    print reference_params[:tag_ids]
   end
 
   def ensure_has_tags_I_may(permission)

@@ -55,20 +55,25 @@ class User < ActiveRecord::Base
   end
 
   def creator_tag
-    tags = tags_I_may(:always_own)
-    if tags.count > 0
-      return tags.first
+    special_tag("Created by #{email}")
+  end
 
-    else
-      tag = Tag.create!(name: "Created by #{email}")
-      assign_as!(:permanent_owner, to: tag)
-      return tag
-    end
+  def earmark_tag
+    special_tag("earmarked")
+  end
+
+  def special_tag(name)
+    tag = tags_I_may(:always_own).find {|t| t.name == name}
+    return tag if tag
+      
+    tag = Tag.create!(name: "earmarked")
+    assign_as!(:permanent_owner, to: tag)
+    return tag
   end
 
   def references_I_may_view
     tags = ids_of_tags_I_may(:view)
-    Reference.includes(:reference_tags)
+    Reference.order(created_at: :desc).includes(:reference_tags)
       .where(reference_tags: {tag_id: tags}).uniq
   end
 end

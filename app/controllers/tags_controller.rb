@@ -4,6 +4,7 @@ class TagsController < ApplicationController
 
   def index
     @tags = current_user.tags_I_may :view
+    @tags.delete current_user.creator_tag
   end
 
   def show

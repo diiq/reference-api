@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
 
   def references_I_may_view
     tags = ids_of_tags_I_may(:view)
-    Reference.order(created_at: :desc).includes(:reference_tags)
+    Reference.order(created_at: :asc).includes(:reference_tags)
       .where(reference_tags: {tag_id: tags}).uniq
   end
 end

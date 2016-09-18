@@ -72,11 +72,6 @@ class ReferencesController < ApplicationController
     reference
   end
 
-  def letsencrypt
-    # use your code here, not mine
-    render text: "bG9dYOpzqASdFIS2dZRjVXufJpsaY4oHpS1zBsnOoDY.enTw7CVUA0X1NCs4YCL3YRaG1_vzNKlvw5Wpfg2bg3A"
-  end
-
   private
 
   def reference

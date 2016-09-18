@@ -6,8 +6,10 @@ Rails.application.routes.draw do
       post 'set_from_url', to: 'references#set_from_url'
       post 'add_tag', to: 'references#add_tag'
       post 'remove_tag', to: 'references#remove_tag'
-    end 
+    end
 
     resources :tags, only: [:index, :show, :create, :destroy]
   end
+
+  get '/.well-known/acme-challenge/:id' => 'references#letsencrypt'
 end

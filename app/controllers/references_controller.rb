@@ -1,5 +1,5 @@
 class ReferencesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :letsencrypt
   respond_to :json
 
   def index
@@ -31,8 +31,8 @@ class ReferencesController < ApplicationController
   def destroy
     # TODO: This should be 'remove from all tags I can edit,
     # then destroy if no tags left
-    new_tags = reference.tags.reject do |tag| 
-      current_user.may? :edit_references, tag 
+    new_tags = reference.tags.reject do |tag|
+      current_user.may? :edit_references, tag
     end
 
     if new_tags.count == 0
@@ -70,6 +70,11 @@ class ReferencesController < ApplicationController
     ).destroy_all
 
     reference
+  end
+
+  def letsencrypt
+    # use your code here, not mine
+    render text: "bG9dYOpzqASdFIS2dZRjVXufJpsaY4oHpS1zBsnOoDY.enTw7CVUA0X1NCs4YCL3YRaG1_vzNKlvw5Wpfg2bg3A"
   end
 
   private

@@ -65,8 +65,8 @@ class User < ActiveRecord::Base
   def special_tag(name)
     tag = tags_I_may(:always_own).find {|t| t.name == name}
     return tag if tag
-      
-    tag = Tag.create!(name: "earmarked")
+
+    tag = Tag.create!(name: name)
     assign_as!(:permanent_owner, to: tag)
     return tag
   end

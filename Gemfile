@@ -17,9 +17,11 @@ gem "resque"
 gem "aws-sdk"
 gem "paperclip", git: "https://github.com/thoughtbot/paperclip"
 
+gem 'open_uri_redirections'
+
 group :production do
   gem 'rails_12factor'
-end 
+end
 
 group :test, :development do
   gem 'dotenv-rails'
@@ -38,6 +40,6 @@ group :development do
   gem 'guard-rspec'
 end
 
-group :darwin do 
+group :darwin do
   gem 'rb-fsevent'
 end

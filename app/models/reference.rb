@@ -1,3 +1,6 @@
+require 'open_uri_redirections'
+
+
 class Reference < ActiveRecord::Base
   # Columns:
   #
@@ -19,11 +22,11 @@ class Reference < ActiveRecord::Base
                       medium: '1024x1024>'
                     }
   validates_attachment_content_type(
-    :image, 
+    :image,
     content_type: [
-      "image/jpg", 
-      "image/jpeg", 
-      "image/png", 
+      "image/jpg",
+      "image/jpeg",
+      "image/png",
       "image/gif"
     ])
 

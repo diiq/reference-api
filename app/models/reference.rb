@@ -1,6 +1,3 @@
-require 'open_uri_redirections'
-
-
 class Reference < ActiveRecord::Base
   # Columns:
   #
@@ -42,7 +39,23 @@ class Reference < ActiveRecord::Base
   end
 
   def set_from_url url
-    self.image = open(url)
+    # This method is a mess because open-uri doesn't handle http ->
+    # https redirects properly. The patch is in ruby as of Sept. 2016,
+    # so as soon as a version drops that has it, we can ditch all this.
+    tries = 3
+    url = URI.parse(url)
+
+    begin
+      image = url.open(redirect: false)
+    rescue OpenURI::HTTPRedirect => redirect
+      url = redirect.uri # assigned from the "Location" response header
+      retry if (tries -= 1) > 0
+      raise
+    end
+
+    self.image = image
+  rescue
+
   end
 
   private

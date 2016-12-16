@@ -73,7 +73,7 @@ class ReferencesController < ApplicationController
   end
 
   def letsencrypt
-    render text: "Vdv-WmpeVsPQMOJKFPfJ0CaFOgCdnalBAf-8Uw7lR_0.enTw7CVUA0X1NCs4YCL3YRaG1_vzNKlvw5Wpfg2bg3A"
+    render text: "CHALLENGE RESPONSE HERE"
   end
 
   private

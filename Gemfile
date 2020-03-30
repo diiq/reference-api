@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby "2.6.5"
 
 # Rails
-gem "rails"
+gem "rails", ">= 4.2.8"
 gem "pg"
 gem "rack-cors"
 gem "jbuilder"

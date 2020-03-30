@@ -8,7 +8,7 @@ gem "rack-cors"
 gem "jbuilder"
 gem "yajl-ruby", ">= 1.3.1"
 
-gem "devise"
+gem "devise", "~> 4.7.1"
 gem "devise_token_auth", github: "lynndylanhurley/devise_token_auth"
 gem "omniauth"
 

@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   def things_I_may(permission, type)
     # Returns a list of ids.
     Assignment.joins(role: :permissions)
-      .where(user_id: id, object_type: type,
+      .where(user_id: id, object_type: type.name.demodulize,
              permissions: {name: permission})
       .pluck(:object_id)
   end

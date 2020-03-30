@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
     resources :tags, only: [:index, :show, :create, :destroy]
   end
+
+  get '/.well-known/acme-challenge/:id' => 'references#letsencrypt'
 end

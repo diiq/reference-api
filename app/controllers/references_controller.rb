@@ -72,6 +72,10 @@ class ReferencesController < ApplicationController
     reference
   end
 
+  def letsencrypt
+    render text: "CHALLENGE RESPONSE HERE"
+  end
+
   private
 
   def reference

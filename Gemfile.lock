@@ -61,7 +61,7 @@ GEM
       jmespath (~> 1.0)
     aws-sdk-resources (2.3.13)
       aws-sdk-core (= 2.3.13)
-    bcrypt (3.1.11)
+    bcrypt (3.1.13)
     builder (3.2.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -189,8 +189,9 @@ GEM
     redis (3.3.0)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
-    responders (2.2.0)
-      railties (>= 4.2.0, < 5.1)
+    responders (2.4.1)
+      actionpack (>= 4.2.0, < 6.0)
+      railties (>= 4.2.0, < 6.0)
     resque (1.26.0)
       mono_logger (~> 1.0)
       multi_json (~> 1.0)
@@ -243,7 +244,7 @@ GEM
       thread_safe (~> 0.1)
     vegas (0.1.11)
       rack (>= 1.0.0)
-    warden (1.2.6)
+    warden (1.2.7)
       rack (>= 1.0)
     yajl-ruby (1.4.1)
 
@@ -252,7 +253,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk
-  devise (~> 4.1.1)
+  devise
   devise_token_auth!
   dotenv-rails
   factory_girl
